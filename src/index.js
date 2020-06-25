@@ -477,34 +477,27 @@ export default class RNPickerSelect extends PureComponent {
     }
 
     renderAndroidHeadless() {
-        const { disabled, Icon, style, pickerProps, onOpen, touchableWrapperProps } = this.props;
+        const { disabled, Icon, style, pickerProps } = this.props;
         const { selectedItem } = this.state;
 
         return (
-            <TouchableOpacity
-                testID="android_touchable_wrapper"
-                onPress={onOpen}
-                activeOpacity={1}
-                {...touchableWrapperProps}
-            >
-                <View style={style.headlessAndroidContainer}>
-                    {this.renderTextInputOrChildren()}
-                    <Picker
-                        style={[
-                            Icon ? { backgroundColor: 'transparent' } : {}, // to hide native icon
-                            defaultStyles.headlessAndroidPicker,
-                            style.headlessAndroidPicker,
-                        ]}
-                        testID="android_picker_headless"
-                        enabled={!disabled}
-                        onValueChange={this.onValueChange}
-                        selectedValue={selectedItem.value}
-                        {...pickerProps}
-                    >
-                        {this.renderPickerItems()}
-                    </Picker>
-                </View>
-            </TouchableOpacity>
+            <View style={style.headlessAndroidContainer}>
+                {this.renderTextInputOrChildren()}
+                <Picker
+                    style={[
+                        Icon ? { backgroundColor: 'transparent' } : {}, // to hide native icon
+                        defaultStyles.headlessAndroidPicker,
+                        style.headlessAndroidPicker,
+                    ]}
+                    testID="android_picker_headless"
+                    enabled={!disabled}
+                    onValueChange={this.onValueChange}
+                    selectedValue={selectedItem.value}
+                    {...pickerProps}
+                >
+                    {this.renderPickerItems()}
+                </Picker>
+            </View>
         );
     }
 
